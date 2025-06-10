@@ -27,7 +27,9 @@ Day_6.ipynb to Day_11.ipynb – Daily analysis notebooks, likely representing pr
 Day_9(self).ipynb, Day_10(self_2).ipynb – Self-assigned or advanced versions of daily notebooks, used for independent practice or customized analysis.
 
 *Project-1 : This Project is performed for all the datascience realated tasks using b_depressed.csv dataset.*
-*Project-2 : This Project is performed for all the datascience realated tasks using Covid_daily_data.csv dataset *
+
+*Project-2 : This Project is performed for all the datascience realated tasks using Covid_daily_data.csv dataset.*
+
 🐍 Scripts
 Priyanshu_QueryResult.py – Python script to process and analyze data programmatically.
 
