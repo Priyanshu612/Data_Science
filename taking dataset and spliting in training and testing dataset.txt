@@ -1,0 +1,73 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+
+# Step 1: Load Dataset
+def load_dataset(file_path):
+    df = pd.read_csv(file_path)
+    print("✅ Dataset loaded successfully.")
+    print(f"Shape: {df.shape}")
+    return df
+
+# Step 2: Split into Train and Test Sets
+def split_data(df, target_column=None, test_size=0.2, random_state=42):
+    if target_column and target_column in df.columns:
+        X = df.drop(columns=[target_column])
+        y = df[target_column]
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state)
+        return X_train, X_test, y_train, y_test
+    else:
+        train, test = train_test_split(df, test_size=test_size, random_state=random_state)
+        return train, test
+
+# Step 3: Perform Basic Data Analysis
+def analyze_data(df):
+    print("\n📊 Basic Info:")
+    print(df.info())
+
+    print("\n📈 Summary Statistics:")
+    print(df.describe())
+
+    print("\n🧼 Missing Values:")
+    print(df.isnull().sum())
+
+    print("\n🔍 Correlation Matrix:")
+    corr = df.corr(numeric_only=True)
+    print(corr)
+
+    # Visualization
+    print("\n📊 Generating Histograms...")
+    df.hist(figsize=(10, 8))
+    plt.tight_layout()
+    plt.show()
+
+    print("\n📌 Correlation Heatmap:")
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(corr, annot=True, cmap="coolwarm", fmt=".2f")
+    plt.title("Correlation Heatmap")
+    plt.show()
+
+# === Main Execution ===
+if __name__ == "__main__":
+    file_path = "your_dataset.csv"  # 🔁 Change to your dataset path
+    target_column = None  # 🔁 Set target column name if doing supervised learning
+
+    df = load_dataset(file_path)
+    analyze_data(df)
+
+    if target_column:
+        X_train, X_test, y_train, y_test = split_data(df, target_column)
+    else:
+        train, test = split_data(df)
+
+    print("\n✅ Data Split Complete.")
+    print(f"Train shape: {train.shape if not target_column else X_train.shape}")
+    print(f"Test shape: {test.shape if not target_column else X_test.shape}")
+
+
+### 📌 Instructions:
+Replace "your_dataset.csv" with your actual file path.
+
+If you're doing supervised learning (e.g. classification or regression), set target_column = "your_target_column".###
